@@ -51,6 +51,21 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+                <section>
+                    <article class="flex">
+                        <div>
+                            <img src="" alt="">
+                        </div>
+                        <div>
+                            <header>
+                            <h2 class="font-bold">Masud!</h2>
+                            <p>Po</p>
+                            </header>
+
+                        </div>
+                    </article>
+                     
+                </section>
             </article>
         </main>
 
