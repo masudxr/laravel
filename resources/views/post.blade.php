@@ -6,29 +6,27 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                    Published <time>{{ $post->created_at->diffForHumans()}}</time>
+                        Published <time>{{ $post->created_at->diffForHumans()}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                        <a href="/authors/{{ $post->author->username}}">
-                            {{ $post->author->name }}
-                        </a>
+                            <a href="/authors/{{ $post->author->username}}">
+                                {{ $post->author->name }}
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
-                        <a href="/"
-                            class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
+                        <a href="/" class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                             <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                                 <g fill="none" fill-rule="evenodd">
                                     <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
                                     </path>
-                                    <path class="fill-current"
-                                        d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
+                                    <path class="fill-current" d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
                                     </path>
                                 </g>
                             </svg>
@@ -37,34 +35,27 @@
                         </a>
 
                         <div class="space-x-2">
-                        <a href="/categories/{{ $post->category->slug}}" class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold" style="font-size: 10px">{{ $post->category->name}}</a>
+                            <a href="/categories/{{ $post->category->slug}}" class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold" style="font-size: 10px">{{ $post->category->name}}</a>
                         </div>
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                    <p>
-                    {{ $post->title }}
-                    </p>
+                        <p>
+                            {{ $post->title }}
+                        </p>
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
                         {!! $post->body !!}
                     </div>
                 </div>
-                <section>
-                    <article class="flex">
-                        <div>
-                            <img src="" alt="">
-                        </div>
-                        <div>
-                            <header>
-                            <h2 class="font-bold">Masud!</h2>
-                            <p>Po</p>
-                            </header>
+                <section class="col-span-8 col-start-5 mt-10">
+                    @include('posts._add-comment-form')
 
-                        </div>
-                    </article>
-                     
+                    @foreach ($post->comments as $comment)
+                    <x-post-comment :comment='$comment' />
+                    @endforeach
+
                 </section>
             </article>
         </main>
