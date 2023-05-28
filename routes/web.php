@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -19,6 +20,21 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('ping', function() {
+//     $mailchimp = new \MailchimpMarketing\Configuration();
+
+//     $mailchimp->setConfig([
+//         'apikey' => config('services.mailchimp.key'),
+//         'server' => 'us21'
+//     ]);
+
+//     // $response = $mailchimp->ping->get();
+//     $response = $mailchimp->ping->get();
+//     ddd($response);
+
+// });
+
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
@@ -40,3 +56,8 @@ Route::post('login',[SessionController::class, 'store'])->middleware('guest');
 Route::get('login',[SessionController::class, 'create'])->middleware('guest');
 
 Route::post('logout',[SessionController::class, 'destroy'])->middleware('auth');
+
+
+Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
